@@ -42,13 +42,13 @@ public class Heroe {
 
     }
 
-    public Heroe(Date fecha_creacion, String name, String descripcion, Integer edad, String sexo, String image, Set<Villano> villanos) {
+    public Heroe(Universe universe,Date fecha_creacion, String name, String descripcion, Integer edad, String sexo, String image) {
+        this.universe = universe;
         this.fecha_creacion = fecha_creacion;
         this.name = name;
         this.descripcion = descripcion;
         this.edad = edad;
         this.sexo = sexo;
         this.image = image;
-        this.villanos = villanos;
     }
 }

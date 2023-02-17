@@ -1,15 +1,12 @@
 package es.iesrafaelalberti.apicliente.controllers;
 
+import es.iesrafaelalberti.apicliente.models.Heroe;
 import es.iesrafaelalberti.apicliente.models.Villano;
 import es.iesrafaelalberti.apicliente.repositories.VillanosRepository;
-import jakarta.persistence.ManyToOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -27,18 +24,29 @@ public class VillanoController {
         return new ResponseEntity<>(villanosRepository.findById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/villanos/create/")
+    @PostMapping("/villanos/create/")
     public ResponseEntity<Object> create(@RequestBody Villano villano){
         villanosRepository.save(villano);
         return new ResponseEntity<>(villano, HttpStatus.OK);
     }
 
     @PutMapping("/villanos/{id}/")
-    public ResponseEntity<Object> update(@PathVariable("id")  @RequestBody Villano villano){
+    public ResponseEntity<Object> update(@PathVariable("id") Long id, @RequestBody Villano villano){
         Optional<Villano> villano1 = villanosRepository.findById(id);
-
+        if(villano1.isPresent()){
+            villano.setId(id);
+            villanosRepository.save(villano);
+            return new ResponseEntity<>(villano,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/heroes/{id}/")
+    public ResponseEntity<Object> delete(@PathVariable("id") Long id){
+        Optional<Villano> villano =villanosRepository.findById(id);
+        villano.ifPresent(value -> villanosRepository.delete(value));
+        return new ResponseEntity<>(villano.isPresent(),HttpStatus.OK);
+    }
 
 
 }

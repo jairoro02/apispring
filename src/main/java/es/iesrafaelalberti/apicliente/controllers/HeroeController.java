@@ -23,7 +23,7 @@ public class HeroeController {
         return new ResponseEntity<>(heroesRepository.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/heroes/create/")
+    @PostMapping("/heroes/create/")
     public ResponseEntity<Object> create(@RequestBody Heroe heroe){
         heroesRepository.save(heroe);
         return new ResponseEntity<>(heroe, HttpStatus.OK);
