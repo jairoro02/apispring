@@ -1,6 +1,7 @@
 package es.iesrafaelalberti.apicliente.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class Heroe {
     @Id
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn()
     private Universe universe;
@@ -34,7 +36,7 @@ public class Heroe {
     private String image;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "enemigo",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
 
 
@@ -51,4 +53,5 @@ public class Heroe {
         this.sexo = sexo;
         this.image = image;
     }
+
 }

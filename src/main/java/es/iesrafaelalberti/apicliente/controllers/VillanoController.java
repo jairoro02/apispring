@@ -16,7 +16,7 @@ public class VillanoController {
     @Autowired
     VillanosRepository villanosRepository;
 
-    @GetMapping("/")
+    @GetMapping("/villanos/")
     public ResponseEntity<Object> index(){return new ResponseEntity<>(villanosRepository.findAll(), HttpStatus.OK);}
 
     @GetMapping("/villanos/{id}/")
@@ -41,7 +41,7 @@ public class VillanoController {
         return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/heroes/{id}/")
+    @DeleteMapping("/villanos/{id}/")
     public ResponseEntity<Object> delete(@PathVariable("id") Long id){
         Optional<Villano> villano =villanosRepository.findById(id);
         villano.ifPresent(value -> villanosRepository.delete(value));

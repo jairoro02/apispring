@@ -1,5 +1,6 @@
 package es.iesrafaelalberti.apicliente.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,11 +12,12 @@ public class Villano {
     @GeneratedValue
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn()
     private Universe universe;
 
-    private String name;
+    private String enemigo;
 
     private String descripcion;
 
@@ -31,8 +33,9 @@ public class Villano {
 
     public Villano(){}
 
-    public Villano(String name, String descripcion, Integer edad, String sexo, String image, Heroe heroe) {
-        this.name = name;
+    public Villano(Universe universe,String enemigo, String descripcion, Integer edad, String sexo, String image, Heroe heroe) {
+        this.universe = universe;
+        this.enemigo = enemigo;
         this.descripcion = descripcion;
         this.edad = edad;
         this.sexo = sexo;

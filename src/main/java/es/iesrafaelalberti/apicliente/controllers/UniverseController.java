@@ -38,7 +38,7 @@ public class UniverseController {
         return new ResponseEntity<>(universe.isPresent(),HttpStatus.OK);
     }
 
-    @PutMapping("/heroes/{id}/")
+    @PutMapping("/universes/{id}/")
     public ResponseEntity<Object> update(@PathVariable("id") Long id, @RequestBody Universe nuevouniverse){
         Optional<Universe> universe =universeRepository.findById(id);
         if(universe.isPresent()){
