@@ -1,6 +1,7 @@
 package es.iesrafaelalberti.apicliente.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ public class Villano {
     @GeneratedValue
     private Long id;
 
-    @JsonBackReference
+    @JsonIgnoreProperties({"heroes" ,"villanos"})
     @ManyToOne
     @JoinColumn()
     private Universe universe;
@@ -27,6 +28,7 @@ public class Villano {
 
     private String image;
 
+    @JsonIgnoreProperties("villanos")
     @ManyToOne
     @JoinColumn()
     private Heroe heroe;

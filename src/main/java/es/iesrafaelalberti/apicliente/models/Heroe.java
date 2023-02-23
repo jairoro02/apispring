@@ -1,6 +1,7 @@
 package es.iesrafaelalberti.apicliente.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class Heroe {
     @Id
     private Long id;
 
-    @JsonBackReference
+    @JsonIgnoreProperties({"heroes" ,"villanos"})
     @ManyToOne
     @JoinColumn()
     private Universe universe;
@@ -35,7 +36,7 @@ public class Heroe {
 
     private String image;
 
-    @JsonBackReference
+    @JsonIgnoreProperties("heroe")
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
 

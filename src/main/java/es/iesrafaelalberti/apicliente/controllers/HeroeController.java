@@ -38,13 +38,11 @@ public class HeroeController {
 
     @PutMapping("/heroes/{id}/")
     public ResponseEntity<Object> update(@PathVariable("id") Long id, @RequestBody Heroe nuevoheroe){
-        Optional<Heroe> heroe =heroesRepository.findById(id);
+        Optional<Heroe> heroe = heroesRepository.findById(id);
         if(heroe.isPresent()){
             nuevoheroe.setId(id);
             heroesRepository.save(nuevoheroe);
             return new ResponseEntity<>(nuevoheroe,HttpStatus.OK);
-
-
         }
         return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
