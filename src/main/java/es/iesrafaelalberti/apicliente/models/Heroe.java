@@ -36,10 +36,16 @@ public class Heroe {
 
     private String image;
 
+
+
+
     @JsonIgnoreProperties("heroe")
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
 
+
+    @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
+    private Set<Favorito> favoritos = new HashSet<>();
 
     public Heroe(){
 
