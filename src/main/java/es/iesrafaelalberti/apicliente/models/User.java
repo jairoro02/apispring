@@ -12,15 +12,24 @@ import java.util.Set;
 
 @Entity @Getter @Setter
 public class User {
-    @GeneratedValue
     @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
 
     private String username;
 
-    @JsonIgnoreProperties("user")
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "user")
     private Set<Favorito> favoritos = new HashSet<>();
+
+
+    public User() {
+    }
+
+    public User(String name, String username) {
+        this.name = name;
+        this.username = username;
+    }
 }

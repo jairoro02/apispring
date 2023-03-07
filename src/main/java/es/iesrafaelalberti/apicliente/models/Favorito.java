@@ -22,4 +22,12 @@ public class Favorito {
     @JoinColumn()
     private Heroe heroe;
 
+
+    public Favorito() {
+    }
+
+    public Favorito(User user, Heroe heroe) {
+        this.user = user;
+        this.heroe = heroe;
+    }
 }
