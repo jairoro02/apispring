@@ -13,7 +13,7 @@ import java.util.List;
 public class Seeder implements CommandLineRunner {
 
     @Autowired
-    UserRepository userRepository;
+    PersonRepository personRepository;
 
     @Autowired
     FavoritosRepository favoritosRepository;
@@ -34,9 +34,11 @@ public class Seeder implements CommandLineRunner {
         universeRepository.saveAll(universes);
         List<Heroe> heroes = HeroeFactory.get(5,universes);
         heroesRepository.saveAll(heroes);
-        List<User> users = UserFactory.get();
-        userRepository.saveAll(users);
-        List<Favorito> favoritos = FavoritoFactory.get(5,users,heroes);
+        //List<Person> people = PersonFactory.get();
+        Person persona = new Person("jairoro","paco1234");
+        //people.add(person);
+        personRepository.save(persona);
+        List<Favorito> favoritos = FavoritoFactory.get(5, persona,heroes);
         favoritosRepository.saveAll(favoritos);
         List<Villano> villanos = VillanoFactory.get(7,universes,heroes);
         villanosRepository.saveAll(villanos);

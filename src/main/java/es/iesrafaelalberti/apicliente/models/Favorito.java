@@ -16,7 +16,7 @@ public class Favorito {
     @JsonIgnoreProperties("favoritos")
     @ManyToOne
     @JoinColumn()
-    private User user;
+    private Person person;
 
     @ManyToOne
     @JoinColumn()
@@ -26,8 +26,8 @@ public class Favorito {
     public Favorito() {
     }
 
-    public Favorito(User user, Heroe heroe) {
-        this.user = user;
+    public Favorito(Person person, Heroe heroe) {
+        this.person = person;
         this.heroe = heroe;
     }
 }
