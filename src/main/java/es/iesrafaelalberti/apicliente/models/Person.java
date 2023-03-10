@@ -2,12 +2,15 @@ package es.iesrafaelalberti.apicliente.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity @Getter @Setter
+@Table(name = "usercustom")
 public class Person {
 
 
@@ -29,6 +32,6 @@ public class Person {
 
     public Person(String username, String password) {
         this.username = username;
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 }
