@@ -1,5 +1,6 @@
 package es.iesrafaelalberti.apicliente.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Person {
     @GeneratedValue
     private Long id;
 
+    @JsonIgnoreProperties("person")
     @OneToMany(mappedBy = "person")
     private Set<Favorito> favoritos = new HashSet<>();
 

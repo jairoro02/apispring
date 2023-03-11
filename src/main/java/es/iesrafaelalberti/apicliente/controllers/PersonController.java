@@ -37,7 +37,7 @@ public class PersonController {
         return new ResponseEntity<>(user.isPresent(),HttpStatus.OK);
     }
 
-    @PatchMapping("/heroes/{id}/")
+    @PutMapping("/users/{id}/")
     public ResponseEntity<Object> update(@PathVariable("id") Long id, @RequestBody Person newuser){
         Optional<Person> user = personRepository.findById(id);
         if(user.isPresent()){

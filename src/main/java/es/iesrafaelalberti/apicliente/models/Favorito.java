@@ -18,6 +18,7 @@ public class Favorito {
     @JoinColumn()
     private Person person;
 
+    @JsonIgnoreProperties({"favoritos","villanos"})
     @ManyToOne
     @JoinColumn()
     private Heroe heroe;

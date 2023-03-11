@@ -44,6 +44,7 @@ public class Heroe {
     private Set<Villano> villanos = new HashSet<>();
 
 
+    @JsonIgnoreProperties("heroe")
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Favorito> favoritos = new HashSet<>();
 

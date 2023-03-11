@@ -20,12 +20,11 @@ public class Universe {
     private String name;
 
     @JsonIgnoreProperties({"universe" ,"heroes"})
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "universe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
 
     @JsonIgnoreProperties( "universe")
-    @JsonManagedReference
     @OneToMany(mappedBy = "universe",cascade = CascadeType.ALL)
     private Set<Heroe> heroes = new HashSet<>();
 
