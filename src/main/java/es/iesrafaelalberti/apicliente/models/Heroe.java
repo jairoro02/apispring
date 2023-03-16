@@ -3,6 +3,8 @@ package es.iesrafaelalberti.apicliente.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import es.iesrafaelalberti.apicliente.dto.HeroeCreateDTO;
+import es.iesrafaelalberti.apicliente.dto.HeroeDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -62,4 +64,12 @@ public class Heroe {
         this.image = image;
     }
 
+    public Heroe(HeroeCreateDTO heroe){
+        this.fecha_creacion = heroe.getFecha_creacion();
+        this.name = heroe.getName();
+        this.descripcion = heroe.getDescripcion();
+        this.edad = heroe.getEdad();
+        this.sexo = heroe.getSexo();
+        this.image = heroe.getImage();
+    }
 }

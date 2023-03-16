@@ -1,7 +1,10 @@
 package es.iesrafaelalberti.apicliente.controllers;
 
+import es.iesrafaelalberti.apicliente.dto.HeroeCreateDTO;
+import es.iesrafaelalberti.apicliente.dto.HeroeDTO;
 import es.iesrafaelalberti.apicliente.models.Heroe;
 import es.iesrafaelalberti.apicliente.repositories.HeroesRepository;
+import es.iesrafaelalberti.apicliente.services.HeroeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ public class HeroeController {
     @Autowired
     HeroesRepository heroesRepository;
 
+    @Autowired
+    HeroeService heroeService;
+
     @GetMapping("/heroes/")
         public ResponseEntity<Object> index(){return new ResponseEntity<>(heroesRepository.findAll(), HttpStatus.OK);}
 
@@ -24,9 +30,10 @@ public class HeroeController {
     }
 
     @PostMapping("/heroes/create/")
-    public ResponseEntity<Object> create(@RequestBody Heroe heroe){
-        heroesRepository.save(heroe);
-        return new ResponseEntity<>(heroe, HttpStatus.OK);
+    public ResponseEntity<Object> create(@RequestBody HeroeCreateDTO heroe){
+        return new ResponseEntity<>(
+                new HeroeDTO(heroeService.herocreate(heroe)), HttpStatus.OK
+        );
     }
 
     @DeleteMapping("/heroes/{id}/")
