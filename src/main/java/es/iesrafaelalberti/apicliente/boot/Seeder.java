@@ -38,7 +38,7 @@ public class Seeder implements CommandLineRunner {
         Person persona = new Person("jairoro","paco1234");
         //people.add(person);
         personRepository.save(persona);
-        List<Favorito> favoritos = FavoritoFactory.get(5, persona,heroes);
+        List<Favorito> favoritos = FavoritoFactory.get(2, persona,heroes);
         favoritosRepository.saveAll(favoritos);
         List<Villano> villanos = VillanoFactory.get(7,universes,heroes);
         villanosRepository.saveAll(villanos);

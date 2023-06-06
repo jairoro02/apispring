@@ -19,7 +19,7 @@ public class FavoritoFactory {
             favoritos.add(
                     new Favorito(
                             person,
-                            heroes.get(rand.nextInt(heroes.size()))
+                            heroes.get(i%heroes.size())
                             ));
 
         return favoritos;
