@@ -21,6 +21,7 @@ public class PersonFactory {
                     new Person(
 
                             esFaker.name().username(),
+                            esFaker.internet().emailAddress(),
                             esFaker.internet().password()
                             ));
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,13 +30,17 @@ public class Seeder implements CommandLineRunner {
 
     @Override
     public void run(String... args){
+        Universe marvel = new Universe("Marvel");
+        Universe dc = new Universe("DC");
 
-        List<Universe> universes = UniverseFactory.get();
+        List<Universe> universes = new ArrayList<>();
+        universes.add(marvel);
+        universes.add(dc);
         universeRepository.saveAll(universes);
         List<Heroe> heroes = HeroeFactory.get(5,universes);
         heroesRepository.saveAll(heroes);
         //List<Person> people = PersonFactory.get();
-        Person persona = new Person("jairoro","paco1234");
+        Person persona = new Person("jairoro","jairoro@gmail.com","paco1234");
         //people.add(person);
         personRepository.save(persona);
         List<Favorito> favoritos = FavoritoFactory.get(2, persona,heroes);

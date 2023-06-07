@@ -17,7 +17,7 @@ public class UniverseController {
     @Autowired
     UniverseRepository universeRepository;
 
-    @GetMapping("/")
+    @GetMapping("/universes/")
     public ResponseEntity<Object> index(){return new ResponseEntity<>(universeRepository.findAll(), HttpStatus.OK);}
 
     @GetMapping("/universes/{id}/")

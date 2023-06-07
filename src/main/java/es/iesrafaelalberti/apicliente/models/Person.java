@@ -18,6 +18,8 @@ public class Person {
     @Column(nullable = false, unique = true)
     private String username;
 
+    private String email;
+
     private String password;
 
     @Id
@@ -32,8 +34,9 @@ public class Person {
     public Person() {
     }
 
-    public Person(String username, String password) {
+    public Person(String username,String email, String password) {
         this.username = username;
+        this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
     }
 }
