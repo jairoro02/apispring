@@ -24,7 +24,6 @@ public class HeroeDTO implements Serializable {
 
     private Universe universe;
 
-    private Date fecha_creacion;
 
     private String name;
 
@@ -40,7 +39,6 @@ public class HeroeDTO implements Serializable {
     public HeroeDTO(Heroe heroe){
         this.id = heroe.getId();
         this.universe = heroe.getUniverse();
-        this.fecha_creacion = heroe.getFecha_creacion();
         this.name = heroe.getName();
         this.descripcion = heroe.getDescripcion();
         this.edad = heroe.getEdad();

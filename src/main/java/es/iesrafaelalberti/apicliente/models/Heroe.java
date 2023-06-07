@@ -26,7 +26,6 @@ public class Heroe {
     @JoinColumn()
     private Universe universe;
 
-    private Date fecha_creacion;
 
     private String name;
 
@@ -54,9 +53,8 @@ public class Heroe {
 
     }
 
-    public Heroe(Universe universe,Date fecha_creacion, String name, String descripcion, Integer edad, String sexo, String image) {
+    public Heroe(Universe universe, String name, String descripcion, Integer edad, String sexo, String image) {
         this.universe = universe;
-        this.fecha_creacion = fecha_creacion;
         this.name = name;
         this.descripcion = descripcion;
         this.edad = edad;
@@ -65,7 +63,6 @@ public class Heroe {
     }
 
     public Heroe(HeroeCreateDTO heroe){
-        this.fecha_creacion = heroe.getFecha_creacion();
         this.name = heroe.getName();
         this.descripcion = heroe.getDescripcion();
         this.edad = heroe.getEdad();

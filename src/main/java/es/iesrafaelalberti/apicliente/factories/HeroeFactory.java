@@ -24,7 +24,6 @@ public class HeroeFactory {
         List<Heroe> heroes = new ArrayList<>();
         for(int i=0; i<number; i++)
             heroes.add(new Heroe(universes.get(rand.nextInt(universes.size())),
-                    esFaker.date().birthday(),
                     esFaker.name().firstName(),
                     esFaker.name().firstName(),
                     esFaker.number().numberBetween(5,50),

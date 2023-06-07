@@ -15,8 +15,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class HeroeCreateDTO implements Serializable {
 
-    private Date fecha_creacion;
-
     private String name;
 
     private String descripcion;
