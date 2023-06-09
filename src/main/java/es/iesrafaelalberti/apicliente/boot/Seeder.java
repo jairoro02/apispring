@@ -61,7 +61,7 @@ public class Seeder implements CommandLineRunner {
         Heroe wonderWoman = new Heroe(universes.get(1), "Wonder Woman", "I am Wonder Woman, a warrior princess of the Amazons. With my lasso of truth and Amazonian strength, I fight for peace, love, and justice in the world of men.", 0, "Female", "https://bewitchedbookworms.com/wp-content/uploads/2013/03/wonderwoman.png");
         heroes.add(wonderWoman);
 
-        Heroe blackWidow = new Heroe(universes.get(0), "Black Widow", "As Black Widow, I am a highly skilled spy and master in martial arts. I use my talents to infiltrate and dismantle criminal organizations, ensuring that justice is served.", 0, "Female", "https://static.wikia.nocookie.net/marvelfanon/images/1/15/Black_Widow_LFNY.png/revision/latest?cb=20180401041903&path-prefix=es");
+        Heroe blackWidow = new Heroe(universes.get(0), "Black Widow", "As Black Widow, I am a highly skilled spy and master in martial arts. I use my talents to infiltrate and dismantle criminal organizations, ensuring that justice is served.", 0, "Female", "https://i.ibb.co/NY76Fs7/Black-Widow-LFNY.webp");
         heroes.add(blackWidow);
 
         Heroe flash = new Heroe(universes.get(1), "Flash", "I am Flash, the fastest man alive. With my superhuman speed, I race against time to protect Central City and fight crime. I am the lightning that strikes with justice.", 0, "Male", "https://i.pinimg.com/originals/83/10/59/83105916580f7b38172a68bc0cd688bb.png");
