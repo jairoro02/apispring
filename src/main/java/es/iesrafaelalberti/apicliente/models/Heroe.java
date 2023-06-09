@@ -8,6 +8,7 @@ import es.iesrafaelalberti.apicliente.dto.HeroeDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import java.io.File;
 import java.util.Date;
@@ -35,9 +36,9 @@ public class Heroe {
 
     private String sexo;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String image;
-
-
 
 
     @JsonIgnoreProperties("heroe")

@@ -26,6 +26,8 @@ public class Villano {
 
     private String sexo;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String image;
 
     @JsonIgnoreProperties("villanos")
