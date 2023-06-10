@@ -3,6 +3,7 @@ package es.iesrafaelalberti.apicliente.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import es.iesrafaelalberti.apicliente.dto.HeroeCreateDTO;
 import es.iesrafaelalberti.apicliente.dto.HeroeDTO;
 import jakarta.persistence.*;

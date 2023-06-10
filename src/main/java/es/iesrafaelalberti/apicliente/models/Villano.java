@@ -18,7 +18,7 @@ public class Villano {
     @JoinColumn()
     private Universe universe;
 
-    private String enemigo;
+    private String name;
 
     private String descripcion;
 
@@ -37,9 +37,9 @@ public class Villano {
 
     public Villano(){}
 
-    public Villano(Universe universe,String enemigo, String descripcion, Integer edad, String sexo, String image, Heroe heroe) {
+    public Villano(Universe universe,String name, String descripcion, Integer edad, String sexo, String image, Heroe heroe) {
         this.universe = universe;
-        this.enemigo = enemigo;
+        this.name = name;
         this.descripcion = descripcion;
         this.edad = edad;
         this.sexo = sexo;
