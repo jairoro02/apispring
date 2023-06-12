@@ -26,6 +26,7 @@ public class PersonController {
     }
 
     @PostMapping("/users/create/")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Object> create(@RequestBody Person person){
         personRepository.save(person);
         return new ResponseEntity<>(person, HttpStatus.OK);

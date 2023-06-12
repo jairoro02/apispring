@@ -61,6 +61,7 @@ public class SecurityConfig {
                 // you can authorize/authenticate requests based on roles by matcher (regular expression)
                 //.authorizeHttpRequests(auth -> auth.requestMatchers("/prisoners/**").hasAuthority("SCOPE_ADMIN"))
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/**").permitAll())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/users/create/").permitAll())
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
