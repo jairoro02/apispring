@@ -6,6 +6,7 @@ import es.iesrafaelalberti.apicliente.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -28,6 +29,8 @@ public class PersonController {
     @PostMapping("/users/create/")
     @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Object> create(@RequestBody Person person){
+        String encodedPassword = new BCryptPasswordEncoder().encode(person.getPassword());
+        person.setPassword(encodedPassword);
         personRepository.save(person);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
