@@ -27,7 +27,6 @@ public class HeroeDTO implements Serializable {
 
     private String descripcion;
 
-
     private String sexo;
 
     private String image;
