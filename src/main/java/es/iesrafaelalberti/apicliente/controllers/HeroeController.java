@@ -26,7 +26,7 @@ public class HeroeController {
 
     @GetMapping("/heroes/{id}/")
     public ResponseEntity<Object>show(@PathVariable("id") Long id){
-        return new ResponseEntity<>(heroesRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(new HeroeDTO(heroesRepository.findById(id).get()), HttpStatus.OK);
     }
 
     @PostMapping("/heroes/create/")

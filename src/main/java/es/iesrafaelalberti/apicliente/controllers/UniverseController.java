@@ -1,5 +1,6 @@
 package es.iesrafaelalberti.apicliente.controllers;
 
+import es.iesrafaelalberti.apicliente.dto.UniverseDTO;
 import es.iesrafaelalberti.apicliente.models.Heroe;
 import es.iesrafaelalberti.apicliente.models.Villano;
 import es.iesrafaelalberti.apicliente.repositories.UniverseRepository;
@@ -9,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import es.iesrafaelalberti.apicliente.models.Universe;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,11 +21,16 @@ public class UniverseController {
     UniverseRepository universeRepository;
 
     @GetMapping("/universes/")
-    public ResponseEntity<Object> index(){return new ResponseEntity<>(universeRepository.findAll(), HttpStatus.OK);}
+    public ResponseEntity<Object> index(){
+        List<UniverseDTO> resultado = new ArrayList<>();
+        for(Universe universe:universeRepository.findAll()) {
+            resultado.add(new UniverseDTO(universe));
+        }
+        return new ResponseEntity<>(resultado, HttpStatus.OK);}
 
     @GetMapping("/universes/{id}/")
     public ResponseEntity<Object> show(@PathVariable("id") Long id){
-        return new ResponseEntity<>(universeRepository.findById(id),HttpStatus.OK);
+        return new ResponseEntity<>(new UniverseDTO(universeRepository.findById(id).get()),HttpStatus.OK);
     }
 
     @PostMapping("/universes/create/")

@@ -21,15 +21,12 @@ public class HeroeDTO implements Serializable {
 
     private Long id;
 
-
-    private Universe universe;
-
+    private String universe;
 
     private String name;
 
     private String descripcion;
 
-    private Integer edad;
 
     private String sexo;
 
@@ -38,10 +35,9 @@ public class HeroeDTO implements Serializable {
 
     public HeroeDTO(Heroe heroe){
         this.id = heroe.getId();
-        this.universe = heroe.getUniverse();
+        this.universe = heroe.getUniverse().getName();
         this.name = heroe.getName();
         this.descripcion = heroe.getDescripcion();
-        this.edad = heroe.getEdad();
         this.sexo = heroe.getSexo();
         this.image = heroe.getImage();
     }

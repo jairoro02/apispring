@@ -8,6 +8,7 @@ import es.iesrafaelalberti.apicliente.dto.HeroeCreateDTO;
 import es.iesrafaelalberti.apicliente.dto.HeroeDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
@@ -17,13 +18,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity @Getter @Setter
+@NoArgsConstructor
 public class Heroe {
 
     @GeneratedValue
     @Id
     private Long id;
 
-    @JsonIgnoreProperties({"heroes" ,"villanos"})
     @ManyToOne
     @JoinColumn()
     private Universe universe;
@@ -37,23 +38,16 @@ public class Heroe {
 
     private String sexo;
 
-    @Lob
-    @Column(columnDefinition = "TEXT")
     private String image;
 
 
-    @JsonIgnoreProperties("heroe")
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
 
 
-    @JsonIgnoreProperties("heroe")
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Favorito> favoritos = new HashSet<>();
 
-    public Heroe(){
-
-    }
 
     public Heroe(Universe universe, String name, String descripcion, Integer edad, String sexo, String image) {
         this.universe = universe;
