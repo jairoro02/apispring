@@ -123,7 +123,7 @@ public class Seeder implements CommandLineRunner {
         Villano kingpin = new Villano(universes.get(0), "Kingpin", "I am Kingpin, the relentless crime lord. My intelligence and brute strength have allowed me to control the city's underworld. Your efforts to maintain peace will be in vain. Soon you will find yourself trapped in my web of corruption and violence.", 0, "Male", "https://www.pngplay.com/wp-content/uploads/12/Kingpin-Transparent-Free-PNG.png", spiderman);
         villanos.add(kingpin);
 
-        Villano reverseFlash = new Villano(universes.get(0), "Reverse-Flash", "I am the Reverse-Flash, the arch-nemesis of the Flash! With my ability to tap into the negative Speed Force, I can match and even surpass the Scarlet Speedster's velocity.", 0, "Male", "https://i.ibb.co/Jj7s1Pv/Reverse-Flash.webp", flash);
+        Villano reverseFlash = new Villano(universes.get(1), "Reverse-Flash", "I am the Reverse-Flash, the arch-nemesis of the Flash! With my ability to tap into the negative Speed Force, I can match and even surpass the Scarlet Speedster's velocity.", 0, "Male", "https://i.ibb.co/Jj7s1Pv/Reverse-Flash.webp", flash);
         villanos.add(reverseFlash);
 
         villanosRepository.saveAll(villanos);
