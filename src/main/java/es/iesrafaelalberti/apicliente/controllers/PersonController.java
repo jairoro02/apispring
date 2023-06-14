@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
 public class PersonController {
 
     @Autowired
@@ -21,13 +20,12 @@ public class PersonController {
     @GetMapping("/users/")
     public ResponseEntity<Object> index(){return new ResponseEntity<>(personRepository.findAll(), HttpStatus.OK);}
 
-    @GetMapping("/users/{id}/")
-    public ResponseEntity<Object>show(@PathVariable("id") Long id){
-        return new ResponseEntity<>(personRepository.findById(id), HttpStatus.OK);
+    @GetMapping("/users/{username}/")
+    public ResponseEntity<Object>show(@PathVariable("username") String username){
+        return new ResponseEntity<>(personRepository.findByUsername(username), HttpStatus.OK);
     }
 
     @PostMapping("/users/create/")
-    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Object> create(@RequestBody Person person){
         String encodedPassword = new BCryptPasswordEncoder().encode(person.getPassword());
         person.setPassword(encodedPassword);

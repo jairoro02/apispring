@@ -7,6 +7,8 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import es.iesrafaelalberti.apicliente.config.RsaKeyProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -40,6 +42,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    @Autowired
+    @Qualifier("myPersonDetailsService")
+    MyPersonDetailsService myUserDetailsService;
     private final RsaKeyProperties jwtConfigProperties;
 
     public SecurityConfig(RsaKeyProperties jwtConfigProperties) {
@@ -56,6 +61,7 @@ public class SecurityConfig {
         return http
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .csrf(AbstractHttpConfigurer::disable)
+                .userDetailsService(myUserDetailsService)
                 // authorization of preflight requests (OPTIONS)
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll())
                 // you can authorize/authenticate requests based on roles by matcher (regular expression)
@@ -78,7 +84,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain tokenSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .cors().configurationSource(corsConfigurationSource()).and()
                 .securityMatcher("/token**")
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll())
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
@@ -101,7 +109,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
