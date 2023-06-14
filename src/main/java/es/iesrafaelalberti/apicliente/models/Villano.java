@@ -13,7 +13,7 @@ public class Villano {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnoreProperties({"heroes" ,"villanos"})
+
     @ManyToOne
     @JoinColumn()
     private Universe universe;
@@ -26,11 +26,10 @@ public class Villano {
 
     private String sexo;
 
-    @Lob
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 1500)
     private String image;
 
-    @JsonIgnoreProperties("villanos")
+
     @ManyToOne
     @JoinColumn()
     private Heroe heroe;

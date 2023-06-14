@@ -38,6 +38,7 @@ public class Heroe {
 
     private String sexo;
 
+    @Column(length = 1500)
     private String image;
 
 
