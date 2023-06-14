@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,7 +24,11 @@ public class HeroeController {
     HeroeService heroeService;
 
     @GetMapping("/heroes/")
-        public ResponseEntity<Object> index(){return new ResponseEntity<>(heroesRepository.findAll(), HttpStatus.OK);}
+        public ResponseEntity<Object> index(){
+        List<HeroeDTO> resultado = new ArrayList<>();
+        for (Heroe heroe: heroesRepository.findAll())
+            resultado.add(new HeroeDTO(heroe));
+        return new ResponseEntity<>(resultado, HttpStatus.OK);}
 
     @GetMapping("/heroes/{id}/")
     public ResponseEntity<Object>show(@PathVariable("id") Long id){
