@@ -30,14 +30,14 @@ public class FavoritoController {
     }
 
     @PostMapping("/favorites/create/")
-    public ResponseEntity<Object> create(@RequestBody Favorito favorito) {
-        Heroe heroe = favorito.getHeroe();
+    public ResponseEntity<Object> create(@RequestBody Favorito favorito, @RequestParam("heroeId") Long heroeId){
+        Heroe heroe = heroesRepository.findById(heroeId).orElse(null);
 
         if (heroe == null) {
             // Manejar el caso cuando el Heroe no existe
             return new ResponseEntity<>("El Heroe no existe", HttpStatus.BAD_REQUEST);
         }
-
+        favorito.setHeroe(heroe);
         favoritosRepository.save(favorito);
         return new ResponseEntity<>(favorito, HttpStatus.OK);
     }
