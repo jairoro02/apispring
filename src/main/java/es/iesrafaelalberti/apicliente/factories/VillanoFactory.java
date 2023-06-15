@@ -27,6 +27,7 @@ public class VillanoFactory {
                     esFaker.number().numberBetween(5,50),
                     esFaker.name().firstName(),
                     esFaker.name().firstName(),
+                            esFaker.name().firstName(),
                     heroes.get(rand.nextInt(heroes.size()))));
 
         return villanos;

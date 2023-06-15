@@ -29,6 +29,8 @@ public class Villano {
     @Column(length = 1500)
     private String image;
 
+    @Column(length = 1500)
+    private String background_image;
 
     @ManyToOne
     @JoinColumn()
@@ -36,15 +38,18 @@ public class Villano {
 
     public Villano(){}
 
-    public Villano(Universe universe,String name, String descripcion, Integer edad, String sexo, String image, Heroe heroe) {
+    public Villano(Universe universe,String name, String descripcion, Integer edad, String sexo, String image, String background_image, Heroe heroe) {
         this.universe = universe;
         this.name = name;
         this.descripcion = descripcion;
         this.edad = edad;
         this.sexo = sexo;
         this.image = image;
+        this.background_image = background_image;
         this.heroe = heroe;
     }
+
+
 
     //@ManyToOne
 }

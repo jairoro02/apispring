@@ -26,6 +26,8 @@ public class VillanoDTO implements Serializable {
 
     private String image;
 
+    private String background_image;
+
     public VillanoDTO(Villano villano) {
         this.id = villano.getId();
         this.universe = villano.getUniverse().getName();
@@ -33,5 +35,6 @@ public class VillanoDTO implements Serializable {
         this.descripcion = villano.getDescripcion();
         this.sexo = villano.getSexo();
         this.image = villano.getImage();
+        this.background_image = villano.getBackground_image();
     }
 }

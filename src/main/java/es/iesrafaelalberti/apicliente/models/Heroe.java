@@ -41,6 +41,9 @@ public class Heroe {
     @Column(length = 1500)
     private String image;
 
+    @Column(length = 1500)
+    private String background_image;
+
 
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
@@ -50,13 +53,14 @@ public class Heroe {
     private Set<Favorito> favoritos = new HashSet<>();
 
 
-    public Heroe(Universe universe, String name, String descripcion, Integer edad, String sexo, String image) {
+    public Heroe(Universe universe, String name, String descripcion, Integer edad, String sexo, String image, String background_image) {
         this.universe = universe;
         this.name = name;
         this.descripcion = descripcion;
         this.edad = edad;
         this.sexo = sexo;
         this.image = image;
+        this.background_image = background_image;
     }
 
     public Heroe(HeroeCreateDTO heroe){

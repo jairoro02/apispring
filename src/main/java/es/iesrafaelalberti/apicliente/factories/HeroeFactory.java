@@ -28,6 +28,7 @@ public class HeroeFactory {
                     esFaker.name().firstName(),
                     esFaker.number().numberBetween(5,50),
                     esFaker.name().firstName(),
+                    esFaker.name().firstName(),
                     esFaker.name().firstName()));
 
         return heroes;

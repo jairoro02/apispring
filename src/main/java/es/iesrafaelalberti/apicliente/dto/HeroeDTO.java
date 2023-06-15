@@ -35,6 +35,8 @@ public class HeroeDTO implements Serializable {
 
     private String image;
 
+    private String background_image;
+
     private List<Favorito> favoritos = new ArrayList<>();
 
     public HeroeDTO(Heroe heroe){
@@ -44,6 +46,7 @@ public class HeroeDTO implements Serializable {
         this.descripcion = heroe.getDescripcion();
         this.sexo = heroe.getSexo();
         this.image = heroe.getImage();
+        this.background_image = heroe.getBackground_image();
         favoritos.addAll(heroe.getFavoritos());
     }
 }
