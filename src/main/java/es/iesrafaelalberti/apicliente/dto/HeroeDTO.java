@@ -37,7 +37,6 @@ public class HeroeDTO implements Serializable {
 
     private String background_image;
 
-    private List<Favorito> favoritos = new ArrayList<>();
 
     public HeroeDTO(Heroe heroe){
         this.id = heroe.getId();
@@ -47,6 +46,5 @@ public class HeroeDTO implements Serializable {
         this.sexo = heroe.getSexo();
         this.image = heroe.getImage();
         this.background_image = heroe.getBackground_image();
-        favoritos.addAll(heroe.getFavoritos());
     }
 }

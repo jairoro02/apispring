@@ -13,11 +13,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class FavoritoDTO implements Serializable {
 
-    private String person;
-    private Heroe hero;
+    private Long personId;
+    private Long heroeId;
 
-    public FavoritoDTO(Favorito favorito) {
-        this.person = favorito.getPerson().getUsername();
-        this.hero = favorito.getHeroe();
+
+    public FavoritoDTO(Long personId, Long heroeId) {
+        this.personId = personId;
+        this.heroeId = heroeId;
     }
 }

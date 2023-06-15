@@ -35,8 +35,4 @@ public class Favorito {
         this.heroe = heroe;
     }
 
-    public Favorito(FavoritoCreateDTO favorito){
-        this.person = favorito.getPerson();
-        this.heroe = favorito.getHeroe();
-    }
 }
