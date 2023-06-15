@@ -1,6 +1,7 @@
 package es.iesrafaelalberti.apicliente.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import es.iesrafaelalberti.apicliente.dto.FavoritoCreateDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,5 +33,10 @@ public class Favorito {
     public Favorito(Person person, Heroe heroe) {
         this.person = person;
         this.heroe = heroe;
+    }
+
+    public Favorito(FavoritoCreateDTO favorito){
+        this.person = favorito.getPerson();
+        this.heroe = favorito.getHeroe();
     }
 }

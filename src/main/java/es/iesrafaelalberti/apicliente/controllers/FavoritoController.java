@@ -1,8 +1,11 @@
 package es.iesrafaelalberti.apicliente.controllers;
 
+import es.iesrafaelalberti.apicliente.dto.FavoritoCreateDTO;
+import es.iesrafaelalberti.apicliente.dto.FavoritoDTO;
 import es.iesrafaelalberti.apicliente.models.Favorito;
 import es.iesrafaelalberti.apicliente.models.Heroe;
 import es.iesrafaelalberti.apicliente.repositories.FavoritosRepository;
+import es.iesrafaelalberti.apicliente.repositories.HeroesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,8 @@ public class FavoritoController {
 
     @Autowired
     FavoritosRepository favoritosRepository;
+    @Autowired
+    HeroesRepository heroesRepository;
 
     @GetMapping("/favorites/")
     public ResponseEntity<Object> index(){return new ResponseEntity<>(favoritosRepository.findAll(), HttpStatus.OK);}
@@ -25,9 +30,16 @@ public class FavoritoController {
     }
 
     @PostMapping("/favorites/create/")
-    public ResponseEntity<Object> create(@RequestBody Favorito favorite){
-        favoritosRepository.save(favorite);
-        return new ResponseEntity<>(favorite, HttpStatus.OK);
+    public ResponseEntity<Object> create(@RequestBody Favorito favorito, @RequestParam("heroeId") Long heroeId){
+        Heroe heroe = heroesRepository.findById(heroeId).orElse(null);
+
+        if (heroe == null) {
+            // Manejar el caso cuando el Heroe no existe
+            return new ResponseEntity<>("El Heroe no existe", HttpStatus.BAD_REQUEST);
+        }
+        favorito.setHeroe(heroe);
+        favoritosRepository.save(favorito);
+        return new ResponseEntity<>(favorito, HttpStatus.OK);
     }
 
     @DeleteMapping("/favorites/{id}/")
