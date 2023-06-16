@@ -21,6 +21,8 @@ public class PersonDTO {
 
     private String username;
 
+    private String email;
+
     private String password;
 
     private List<FavDTO> favoritos = new ArrayList<>();
@@ -28,6 +30,7 @@ public class PersonDTO {
     public PersonDTO(Person person){
         this.id = person.getId();
         this.username = person.getUsername();
+        this.email = person.getEmail();
         this.password = person.getPassword();
         for(Favorito favorito: person.getFavoritos())
             favoritos.add(new FavDTO(favorito));
