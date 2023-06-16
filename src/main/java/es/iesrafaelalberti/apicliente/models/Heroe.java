@@ -44,7 +44,7 @@ public class Heroe {
     @Column(length = 1500)
     private String background_image;
 
-
+    @JsonIgnoreProperties("heroe")
     @OneToMany(mappedBy = "heroe",cascade = CascadeType.ALL)
     private Set<Villano> villanos = new HashSet<>();
 
