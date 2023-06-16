@@ -1,5 +1,7 @@
 package es.iesrafaelalberti.apicliente.controllers;
 
+import es.iesrafaelalberti.apicliente.dto.FavDTO;
+import es.iesrafaelalberti.apicliente.dto.PersonDTO;
 import es.iesrafaelalberti.apicliente.models.Person;
 import es.iesrafaelalberti.apicliente.repositories.PersonRepository;
 
@@ -21,8 +23,16 @@ public class PersonController {
     public ResponseEntity<Object> index(){return new ResponseEntity<>(personRepository.findAll(), HttpStatus.OK);}
 
     @GetMapping("/users/{username}/")
-    public ResponseEntity<Object>show(@PathVariable("username") String username){
-        return new ResponseEntity<>(personRepository.findByUsername(username), HttpStatus.OK);
+    public ResponseEntity<Object> show(@PathVariable("username") String username) {
+        Optional<Person> personOptional = Optional.ofNullable(personRepository.findByUsername(username));
+
+        if (personOptional.isPresent()) {
+            Person person = personOptional.get();
+            return new ResponseEntity<>(new PersonDTO(person), HttpStatus.OK);
+        } else {
+            // Manejar el caso en que no se encuentra un usuario con el nombre de usuario dado
+            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/users/create/")
