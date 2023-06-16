@@ -25,6 +25,7 @@ public class Heroe {
     @Id
     private Long id;
 
+    @JsonIgnoreProperties({"heroes","villanos"})
     @ManyToOne
     @JoinColumn()
     private Universe universe;
