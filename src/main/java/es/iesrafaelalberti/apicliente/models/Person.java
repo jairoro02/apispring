@@ -21,6 +21,9 @@ public class Person {
     private String email;
 
     private String password;
+    @JsonIgnoreProperties("participantes")
+    @ManyToMany
+    private Set<Evento> eventos = new HashSet<>();
 
     @Id
     @GeneratedValue
