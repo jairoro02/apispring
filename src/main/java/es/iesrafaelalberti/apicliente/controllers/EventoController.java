@@ -70,9 +70,8 @@ public class EventoController {
             evento.get().getParticipantes().add(person.get());
             eventoRepository.save(evento.get());
             return new ResponseEntity<>(evento.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Evento o persona no encontrada", HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(evento, HttpStatus.OK);
     }
 
     @PostMapping("/eventos/{id}/remove-participant/")
