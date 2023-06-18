@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -62,12 +63,18 @@ public class EventoController {
     }
 
     @PostMapping("/eventos/{id}/add-participant/")
-    public ResponseEntity<Object> addParticipant(@PathVariable("id") Long id, @RequestBody String personUsername) {
+    public ResponseEntity<Object> addParticipant(@PathVariable("id") Long id, @RequestBody Map<String, String> requestBody) {
         Optional<Evento> evento = eventoRepository.findById(id);
+        String personUsername = requestBody.get("personUsername");
         Optional<Person> person = Optional.ofNullable(personRepository.findByUsername(personUsername));
-        evento.get().getParticipantes().add(person.get());
-        eventoRepository.save(evento.get());
-        return new ResponseEntity<>(evento.get(), HttpStatus.OK);
+
+        if (evento.isPresent() && person.isPresent()) {
+            evento.get().getParticipantes().add(person.get());
+            eventoRepository.save(evento.get());
+            return new ResponseEntity<>(evento.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Evento o persona no encontrada", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/eventos/{id}/remove-participant/")
