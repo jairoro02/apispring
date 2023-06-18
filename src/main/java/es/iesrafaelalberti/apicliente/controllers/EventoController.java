@@ -78,9 +78,10 @@ public class EventoController {
     }
 
     @PostMapping("/eventos/{id}/remove-participant/")
-    public ResponseEntity<Object> removeParticipant(@PathVariable("id") Long id, @RequestBody Long personId) {
+    public ResponseEntity<Object> removeParticipant(@PathVariable("id") Long id, @RequestBody Map<String, String> requestBody) {
         Optional<Evento> evento = eventoRepository.findById(id);
-        Optional<Person> person = personRepository.findById(personId);
+        String personUsername = requestBody.get("personUsername");
+        Optional<Person> person = Optional.ofNullable(personRepository.findByUsername(personUsername));
 
         if (evento.isPresent() && person.isPresent()) {
             evento.get().getParticipantes().remove(person.get());
