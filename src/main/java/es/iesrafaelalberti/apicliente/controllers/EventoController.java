@@ -65,13 +65,9 @@ public class EventoController {
     public ResponseEntity<Object> addParticipant(@PathVariable("id") Long id, @RequestBody String personUsername) {
         Optional<Evento> evento = eventoRepository.findById(id);
         Optional<Person> person = Optional.ofNullable(personRepository.findByUsername(personUsername));
-
-        if (evento.isPresent() && person.isPresent()) {
-            evento.get().getParticipantes().add(person.get());
-            eventoRepository.save(evento.get());
-            return new ResponseEntity<>(evento.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(evento, HttpStatus.OK);
+        evento.get().getParticipantes().add(person.get());
+        eventoRepository.save(evento.get());
+        return new ResponseEntity<>(evento.get(), HttpStatus.OK);
     }
 
     @PostMapping("/eventos/{id}/remove-participant/")
